@@ -12,7 +12,17 @@ import { Progress } from '@/components/ui/progress';
 type Props = {}
 
 const VectorDBPage= (props:Props) => {
-    const [isUploading] = useState(false);
+    const [isUploading, setisUploading] = useState(false);
+    const [indexname, setIndexname] = useState("");
+    const [namespace, setNamespace] = useState("");
+    const onStartUpload= async () =>{
+        const response =await fetch ('api/updatedatabase', {method: 'POST', body: JSON.stringify({
+            indexname,
+            namespace
+        })})
+        console.log(response);
+        // await processStramedProgress(response);
+    }
     return (
         <main className='flex flex-col items-center p-24'>
             <Card>
@@ -36,17 +46,17 @@ const VectorDBPage= (props:Props) => {
                                     <Label>
                                         Index Name
                                     </Label>
-                                    <Input placeholder='index name' disabled={isUploading} className='disabled:cursor-default'/>
+                                    <Input value={indexname} onChange={e=> setIndexname(e.target.value)} placeholder='index name' disabled={isUploading} className='disabled:cursor-default'/>
                                 </div>
                                 <div className='grid gap-2'>
                                     <Label>
                                         Namespace
                                     </Label>
-                                    <Input placeholder='namespace' disabled={isUploading} className='disabled:cursor-default'/>
+                                    <Input  value={namespace} onChange={e=> setNamespace(e.target.value)} placeholder='namespace' disabled={isUploading} className='disabled:cursor-default'/>
                                 </div>
                             </div>
                         </div>
-                        <Button variant={'outline'} className='w-full h-full' disabled={isUploading}>
+                        <Button onClick={onStartUpload} variant={'outline'} className='w-full h-full' disabled={isUploading}>
                             <span className='flex flex-row'>
                                 <Database size={50} className='stroke-[#D90013]'/>
                                 <MoveUp className='stroke-[#D90013]'/>
