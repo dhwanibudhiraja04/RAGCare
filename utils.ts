@@ -77,7 +77,7 @@ async function processOneBatch(client: Pinecone, indexname: string, namespace: s
     await index.upsert(vectorBatch);
     totalDocumentChunksUpseted += vectorBatch.length;
     if (callback !== undefined) {
-        callback(filename, totalDocumentChunks, totalDocumentChunksUpseted, false)
+        callback(filename, totalDocumentChunks, totalDocumentChunksUpseted, true)
     }
     vectorBatch = [];
 }
