@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏥 Medical Report Analyzer using RAG Knowledge Base
 
-## Getting Started
+## 📝 Introduction
+This project analyzes **medical reports** using a **RAG (Retrieval Augmented Generation) knowledge base**. Born out of a personal experience when my mother was diagnosed with **blood cancer**, I created this app to deliver **accurate medical insights** in situations where professional help is inaccessible. General AI models failed to provide precise medical interpretations, pushing me to build a more reliable system for understanding complex medical data.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ❓ Problem
+Medical reports like blood tests or diagnostic profiles are hard to interpret without expert advice. Generic AI models often lack the required **context** and **accuracy**, making it difficult to understand critical medical terms during stressful times.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 💡 Solution
+I developed an app using **RAG (Retrieval Augmented Generation)** that allows users to upload their medical reports (PDF or text) and retrieve **accurate information** from a **trusted medical knowledge base**. This approach ensures **context-specific answers** by leveraging similarity search over curated medical sources such as textbooks and research papers.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🔑 Key Features
 
-To learn more about Next.js, take a look at the following resources:
+- **Medical Knowledge Base**: A comprehensive collection of **medical documents** and **diagnostic manuals**, stored in a searchable format using Pinecone.
+- **PDF/Text Uploads**: Users can upload medical reports to analyze them and fetch relevant insights.
+- **AI-Powered Analysis**: The system uses **semantic search** to pull content from the knowledge base, delivering precise and reliable medical information.
+- **Transparency**: Users can view the exact source of the information provided, building **trust** and offering complete transparency.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## ⚙️ Tech Stack
 
-## Deploy on Vercel
+- **Next.js**: A powerful framework for building interactive user interfaces and handling server-side rendering.
+- **Pinecone**: Vector database for similarity search, allowing quick retrieval of contextually appropriate information.
+- **ONNX**: Utilized for local execution of a large embedding model, enabling secure and cost-effective document processing.
+- **Langchain**: Simplifies document chunking and embedding for efficient search and retrieval.
+- **ShadCN UI**: Provides pre-built UI components to create a clean and responsive interface.
+- **Typescript**: Ensures type safety across the project, improving stability and reducing errors.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🏗️ Architecture
+
+1. **Frontend (Next.js)**: Users upload their medical reports via the frontend.
+2. **Backend (RAG Model)**: The reports are split into chunks, embedded using an **ONNX-based model**, and stored in Pinecone.
+3. **Knowledge Base**: On query, relevant information is retrieved from the medical knowledge base and displayed to the user.
+
+---
+
+## 🎥 Demo
+1. **Upload**: Users can upload medical reports (PDF or text).
+2. **Process**: The app processes the document, embedding its content in the knowledge base.
+3. **Query**: Users can ask medical questions, and the app retrieves **relevant information** from trusted sources like medical literature.
+
+---
+
+## 🚀 Future Enhancements
+- Expand the medical knowledge base with **user contributions**.
+- Develop a **mobile version** for more accessibility.
+- Introduce **fine-tuning** for specific medical conditions to further improve response accuracy.
+
+---
+
+## 🧗‍♂️ Challenges
+
+- **Model Size**: Running the 1.3GB ONNX model locally for large documents required considerable processing time.
+- **Data Privacy**: Ensuring **sensitive medical data** is processed locally, without sending it to external servers, was critical.
+
+---
+
+## 🛠️ How to Run Locally
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/medical-report-analyzer.git
